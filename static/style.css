@@ -1,0 +1,60 @@
+* {
+    margin: 0;
+}
+
+.top-name {
+    background-color: rgb(28, 28, 28);
+    color: blanchedalmond;
+    height: 10vh;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main-container {
+    display: flex;
+}
+
+.left-navbar {
+    background-color: rgb(28, 28, 28);
+    width: 15vw;
+    height: 89.4vh;
+    border: 3px solid red;
+}
+
+.nav-link {
+    color: white;
+}
+
+.folderConteiner{
+    width: 84vw;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.full{
+    width: 84vw;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.folderImage {
+    width: 5vw;
+}
+
+.divFolder {
+    margin: 10px;
+    width: 100px;
+}
+
+.FolderBTN {
+    background-color: white;
+    border: none;
+}
+
+.divFolder h3 {
+    text-align: center;
+}

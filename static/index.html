@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <title>Cloud</title>
+</head>
+<body>
+    <div class="top-name">
+        <h1 class="name">Local Cloud</h1>
+    </div>   
+
+    <div class="main-container">
+
+        <div class="left-navbar">
+            <nav class="nav flex-column">
+                <a class="nav-link active" href="#">Active</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link" href="#">Link</a>
+                <a class="nav-link disabled" href="#">Disabled</a>
+              </nav>
+        </div>
+
+        <div class="main-window">
+            <div class="folderConteiner"></div>
+        </div>
+
+    </div>
+    <!-- <script src="/app.js"></script> -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        const socket = io();
+
+        socket.on('dataFolders', (msg) => {
+            console.log(msg)
+            for (let item of msg){
+                let count = 1
+
+                if (count % 5 == 0) {
+                    addFolder(item.path, item.nameFolde, item.type)
+                    document.querySelector('.folderConteiner').className = ('full')
+                    const workSpace = document.createElement('div')
+                    workSpace.className = 'folderConteiner'
+                    document.querySelector('.main-window').appendChild(workSpace)
+                } else {
+                    addFolder(item.path, item.nameFolde, item.type)
+                }
+            count+=1
+        }
+        })
+        
+        
+        function addFolder (path, name, type){
+            const workSpace = document.querySelector('.folderConteiner')
+            const divFolder = document.createElement('div')
+            const button = document.createElement('a')
+            button.href = path
+            button.className = 'FolderBTN'
+            const image = document.createElement('img')
+            image.className = 'folderImage'
+            if (type == 'file'){
+                image.src = '/document.png'
+            } else if (type == 'folder'){
+                image.src = '/folder.png'
+            }
+            button.appendChild(image)
+            const nameFolder = document.createElement('h3')
+            divFolder.className = 'divFolder'
+            nameFolder.innerHTML = name
+            divFolder.appendChild(button)
+            divFolder.appendChild(nameFolder)
+            workSpace.appendChild(divFolder)
+        }
+        
+        
+        
+    </script>
+</body>
+</html>
